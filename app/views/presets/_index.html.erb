@@ -1,0 +1,24 @@
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>User</th>
+        <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @presets.each do |preset| %>
+        <tr>
+            <td><%= preset.name %></td>
+            <td><%= preset.user.email %></td>
+            <td><%= link_to 'Show', preset_path(preset) %></td>
+            <% if preset_is_users?(preset) %>
+                <td><%= link_to 'Delete', preset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+
+<br>

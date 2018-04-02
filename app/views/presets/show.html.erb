@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+    <strong>Name:</strong>
+    <%= @preset.name %>
+</p>
+
+<p>
+    <strong>User:</strong>
+    <%= @preset.user.email %>
+</p>
+
+<canvas id="myCanvas">
+</canvas>
+<br>
+<form action="#">
+    <p class="range-field">
+        <input type="range" id="test5" min="0" max="100" />
+    </p>
+</form>
+
+<% if preset_is_users?(@preset) %>
+
+    <%= link_to 'Save Preset', edit_preset_path(@preset) %> |
+    <%= link_to 'Back', presets_path %>
+
+    <% elsif @current_user.present? %>
+    <%= link_to 'Fork Preset', presets_path(@preset, preset: { name: @preset.name, user_id: @current_user.id }, format: :html), method: 'post' %> |
+    <%= link_to 'Back', presets_all_path %>
+<% else %>
+
+    <%= link_to 'Create account to fork settings!', new_user_path %>
+    <%= link_to 'Back', presets_all_path %>
+
+
+<% end %>
+

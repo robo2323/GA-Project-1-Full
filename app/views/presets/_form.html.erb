@@ -1,0 +1,26 @@
+<%= form_with(model: preset, local: true) do |form| %>
+    <% if preset.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(preset.errors.count, "error") %> prohibited this preset from being saved:</h2>
+
+            <ul>
+                <% preset.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name, id: :preset_name %>
+    </div>
+
+    <div class="field">
+        <%= form.hidden_field :user_id, id: @current_user.id, value: @current_user.id %>
+    </div>
+
+    <div class="actions">
+        <%= form.submit class: 'btn' %>
+    </div>
+<% end %>

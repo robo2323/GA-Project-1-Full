@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project1</title>
+    <%= csrf_meta_tags %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+
+
+<nav class="green">
+    <div class="nav-wrapper">
+        <ul>
+
+            <% if @current_user.present? %>
+                <li><%= link_to 'Your Presets', presets_path %></li>
+
+                <li><%= link_to 'Browse All Presets', presets_all_path %></li>
+                <li class="right">
+                    <div class="dropdown-nav">
+                        <a><%= @current_user.email %></a>
+                        <div class="dropdown-nav-content green">
+                            <%= link_to "Edit Account", edit_user_path(@current_user.id) %>
+                            <%= link_to "Sign Out", login_path, method: 'delete' %>
+                        </div>
+                    </div>
+                </li>
+
+
+            <% else %>
+                <li><%= link_to 'Home', presets_path %></li>
+
+                <li><%= link_to 'New User', new_user_path %></li>
+                <li class="right"><%= link_to 'Sign In', login_path %></li>
+
+            <% end %>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+
+    <%= yield %>
+</div>
+</body>
+</html>
