@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :presets
+  has_many :comments
 
   #encrypt password
   has_secure_password

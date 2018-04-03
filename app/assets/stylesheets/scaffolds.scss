@@ -13,7 +13,10 @@ pre {
   padding: 10px;
   font-size: 11px;
 }
+.container{
+  margin-top: 70px;
 
+}
 .container a {
   color: dodgerblue;
 
@@ -21,7 +24,10 @@ pre {
     color: tomato;
   }
 }
-
+nav{
+  position:fixed;
+  top: 0;
+}
 nav ul a{
   color: #EFEFEF;
 

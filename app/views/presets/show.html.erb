@@ -1,13 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<h2>
     <strong>Name:</strong>
     <%= @preset.name %>
-</p>
+</h2>
 
 <p>
-    <strong>User:</strong>
-    <%= @preset.user.email %>
+
+    <% unless preset_is_users?(@preset) %>
+        <strong>User:</strong>
+        <%= @preset.user.email %>
+    <% end %>
+
 </p>
 
 <canvas id="myCanvas">
@@ -15,7 +19,7 @@
 <br>
 <form action="#">
     <p class="range-field">
-        <input type="range" id="test5" min="0" max="100" />
+        <input type="range" id="test5" min="0" max="100"/>
     </p>
 </form>
 
@@ -24,8 +28,9 @@
     <%= link_to 'Save Preset', edit_preset_path(@preset) %> |
     <%= link_to 'Back', presets_path %>
 
-    <% elsif @current_user.present? %>
-    <%= link_to 'Fork Preset', presets_path(@preset, preset: { name: @preset.name, user_id: @current_user.id }, format: :html), method: 'post' %> |
+<% elsif @current_user.present? %>
+    <%= link_to 'Fork Preset', presets_path(@preset, preset: { name: @preset.name, user_id: @current_user.id }, format: :html), method: 'post' %>
+    |
     <%= link_to 'Back', presets_all_path %>
 <% else %>
 
@@ -34,4 +39,36 @@
 
 
 <% end %>
+<br>
+<% if @preset.ratings.present? %>
+    <p>Avg Rating: <%= render 'stars', preset: @preset %></p>
+<% end %>
+<h3>Comments: [<%= @preset.comments.size %>]</h3>
+<% if @current_user.present? %>
+    <%= form_with(model: new_comment, local: true) do |form| %>
+        <div class="field">
+            <%= form.label :comment %>
+            <%= form.text_area :comment %>
+        </div>
+        <div class="field">
+            <%= form.hidden_field :user_id, id: @current_user.id, value: @current_user.id %>
+        </div>
+        <div class="field">
+            <%= form.hidden_field :preset_id, id: @preset.id, value: @preset.id %>
+        </div>
+        <div class="actions">
+            <%= form.submit 'Add Comment', class: 'btn' %>
+        </div>
+    <% end %>
+<% end %>
+<hr>
+<% @preset.comments.each do |comment| %>
+    <div class="comment">
+        <h4>By: <%= comment.user.email %></h4>
+        <p><%= comment.comment %></p>
+    </div>
+    <hr>
+<% end %>
+
+
 

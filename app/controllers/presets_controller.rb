@@ -92,6 +92,26 @@ class PresetsController < ApplicationController
     @preset = Preset.find(params[:id])
   end
 
+  def avg_rating(preset)
+    if preset.ratings.present?
+      arr = preset.ratings.pluck(:rating)
+      @rating = (arr.inject { |sum, el| sum + el }.to_f / arr.size).round
+    end
+
+  end
+
+  helper_method :avg_rating
+
+  def new_comment
+    @comment = Comment.new
+  end
+  helper_method :new_comment
+
+  def create_comment
+    @comment = Comment.new(comment_params)
+  end
+  helper_method :create_comment
+
   def preset_is_users?(preset)
 
     preset.user_id == @current_user.id if @current_user.present?
@@ -102,6 +122,10 @@ class PresetsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def preset_params
     params.require(:preset).permit(:name, :user_id)
+  end
+
+  def comment_params
+    params.permit(:comment, :user_id, :preset_id)
   end
 
 end

@@ -2,7 +2,13 @@
     <thead>
     <tr>
         <th>Name</th>
-        <th>User</th>
+        <th>Avg Rating</th>
+        <% if current_page?(action: 'all') %>
+
+            <th>Created By</th>
+        <% else %>
+            <th>Comments</th>
+        <% end %>
         <th colspan="3"></th>
     </tr>
     </thead>
@@ -11,11 +17,23 @@
     <% @presets.each do |preset| %>
         <tr>
             <td><%= preset.name %></td>
-            <td><%= preset.user.email %></td>
-            <td><%= link_to 'Show', preset_path(preset) %></td>
-            <% if preset_is_users?(preset) %>
-                <td><%= link_to 'Delete', preset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td>
+                <% unless preset.ratings.empty? %>
+
+                    <%= render 'stars', preset: preset %>
+
             <% end %>
+            </td>
+
+            <% if preset_is_users?(preset) %>
+                <td><%= preset.comments.size %></td>
+                <td><%= link_to 'Delete', preset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% else %>
+                <td><%= preset.user.email %></td>
+
+            <% end %>
+            <td><%= link_to 'Show', preset_path(preset) %></td>
+
         </tr>
     <% end %>
     </tbody>

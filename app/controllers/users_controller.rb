@@ -17,7 +17,10 @@ class UsersController < ApplicationController
 
 
     if @user.save
-      redirect_to '/login'
+      flash[:notice] = 'User was successfully created.'
+      redirect_to login_path
+
+      # redirect_to '/login'
     else
       render :new
     end
@@ -29,7 +32,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to root_path, notice: 'User was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'User was successfully updated.'}
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }

@@ -2,6 +2,7 @@
 <% if flash[:error].present? %>
 <p id="error_explanation"><%= flash[:error]  %></p>
     <% end %>
+<p id="notice"><%= notice %></p>
 
 <%= form_tag login_path do %>
     <%= label_tag :email %>
