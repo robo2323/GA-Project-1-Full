@@ -5,14 +5,16 @@
     <%= @preset.name %>
 </h2>
 
-<p>
-
-    <% unless preset_is_users?(@preset) %>
+<% unless preset_is_users?(@preset) %>
+    <p>
         <strong>User:</strong>
         <%= @preset.user.email %>
-    <% end %>
 
-</p>
+        <% (1..5).each do |i| %>
+            <a><i class="far fa-star"></i></a>
+        <% end %>
+    </p>
+<% end %>
 
 <canvas id="myCanvas">
 </canvas>
