@@ -95,7 +95,8 @@ class PresetsController < ApplicationController
   def avg_rating(preset)
     if preset.ratings.present?
       arr = preset.ratings.pluck(:rating)
-      @rating = (arr.inject { |sum, el| sum + el }.to_f / arr.size).round
+      arr.compact!
+      @rating = (arr.sum.to_f / arr.size).round #(arr.inject { |sum, el| sum + el }.to_f / arr.size).round
     end
 
   end
@@ -105,12 +106,20 @@ class PresetsController < ApplicationController
   def new_comment
     @comment = Comment.new
   end
+
   helper_method :new_comment
 
   def create_comment
     @comment = Comment.new(comment_params)
   end
+
   helper_method :create_comment
+
+  def new_rating
+    @rating = Rating.new
+  end
+
+  helper_method :new_rating
 
   def preset_is_users?(preset)
 

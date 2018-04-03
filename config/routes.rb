@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :comments
   root to: "presets#index"
 
 
@@ -11,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :presets
 
+  resources :comments, only: [:create, :update, :destroy]
+  resources :ratings, only: [:create, :update, :destroy]
 
 
   # resources :users, only: [:new, :create]
