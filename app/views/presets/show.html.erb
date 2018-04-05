@@ -1,9 +1,8 @@
-<p id="notice"><%= notice %></p>
+<div id="notice">
+    <%= notice %>
+</div>
 
-<h2>
-    <strong>Name:</strong>
-    <%= @preset.name %>
-</h2>
+
 
 <% unless preset_is_users?(@preset) %>
     <p>
@@ -19,28 +18,84 @@
         <% end %>
     </p>
 <% end %>
+<%= form_tag(@preset, method: "put") do %>
+    <div class="name-field">
+        <h2>Name: </h2>
+        <input name="preset[name]" class="input" type="text" value="<%= @preset.name %>" id="name-input">
 
-<canvas id="myCanvas">
-</canvas>
-<br>
+    </div>
 
-    <p class="range-field">
-        <input id="square-size" type="range" min="5" max="100" value="20"/>
-    </p>
-    <p class="range-field">
-        <input id="line-width" type="range" min="1" max="30" value="2"/>
-    </p>
+    <div class="settings" id="settings-1">
+        <div class="settings-head">Settings 1</div>
+        <div class="settings-label"><span>Density: </span><span id="seeds-label"></span></div>
+        <input name="preset[seeds]" class="slider is-large is-circle is-info" type="range" min="1" max="500" value="<%= @preset.seeds %>" id="seeds">
+
+        <div class="settings-label"><span>Angle: </span><span id="angle-label"></span></div>
+        <input name="preset[angle]" class="slider is-large is-circle is-info" type="range" min="1" max="90" step="0.1" id="angle" value="<%= @preset.angle %>">
+
+        <div class="settings-label"><span>Zoom: </span><span id="zoom-label"></span></div>
+        <input name="preset[zoom]" class="slider is-large is-circle is-info" type="range" min="1" max="350" step="0.1" id="zoom" value="<%= @preset.zoom %>">
+
+        <div class="settings-label"><span>Color 1:</span></div>
+        <input name="preset[color_1]" type="color" id="color-1" value="<%= @preset.color_1 %>">
+
+        <div class="settings-label"><span>Color 2:</span></div>
+        <input name="preset[color_2]" type="color" id="color-2" value="<%= @preset.color_2 %>">
+
+        <div class="settings-label"><span>Color 3:</span></div>
+        <input name="preset[color_3]" type="color" id="color-3" value="<%= @preset.color_3 %>">
+
+        <div class="settings-label"><span>Color 4:</span></div>
+        <input name="preset[color_4]" type="color" id="color-4" value="<%= @preset.color_4 %>">
+
+        <div class="settings-label"><span>Background Color:</span></div>
+        <input name="preset[bg_color]" type="color" id="bgColor" value="<%= @preset.bg_color %>">
+
+        <div class="settings-label"><span>Opacity: </span><span id="opacity-label"></span></div>
+        <input name="preset[opacity]" class="slider is-large is-circle is-info" type="range" min="0" max="255" id="opacity" value="<%= @preset.opacity %>">
+
+        <input name="preset[x]" type="hidden" id="x" value="<%= @preset.x %>">
+        <input name="preset[y]" type="hidden" id="y" value="<%= @preset.y %>">
+
+    </div>
+
+    <div class="settings" id="settings-2">
+        <div class="settings-head">Settings 2</div>
+
+        <div class="settings-label"><span>Bezier 1: </span><span id="b1-label"></span></div>
+        <input name="preset[b1]" class="slider is-large is-circle is-info" type="range" min="1" max="1000" id="b1" value="<%= @preset.b1 %>">
+
+        <div class="settings-label"><span>Bezier 2: </span><span id="b2-label"></span></div>
+        <input name="preset[b2]" class="slider is-large is-circle is-info" type="range" min="1" max="1000" id="b2" value="<%= @preset.b2 %>">
+
+        <div class="settings-label"><span>Bezier 3: </span><span id="b3-label"></span></div>
+        <input name="preset[b3]" class="slider is-large is-circle is-info" type="range" min="1" max="1000" id="b3" value="<%= @preset.b3 %>">
+
+        <div class="settings-label"><span>Bezier 4: </span><span id="b4-label"></span></div>
+        <input name="preset[b4]" class="slider is-large is-circle is-info" type="range" min="1" max="1000" id="b4" value="<%= @preset.b4 %>">
+
+        <div class="settings-label"><span>Bezier 5: </span><span id="b5-label"></span></div>
+        <input name="preset[b5]" class="slider is-large is-circle is-info" type="range" min="1" max="1000" id="b5" value="<%= @preset.b5 %>">
+
+
+    </div>
+
+    <% if preset_is_users?(@preset) %>
+        <%= submit_tag("Save Preset", { class: 'button is-success is-medium' }) %>
+    <% end %>
+<% end %>
+<div id="myCanvas">
+</div>
+
 
 
 <% if preset_is_users?(@preset) %>
 
-    <%= link_to 'Save Preset', edit_preset_path(@preset) %> |
     <%= link_to 'Back', presets_path %>
 
 <% elsif @current_user.present? %>
-    <%= link_to 'Fork Preset', presets_path(@preset, preset: { name: @preset.name, user_id: @current_user.id }, format: :html), method: 'post' %>
-    |
-    <%= link_to 'Back', presets_all_path %>
+    <%= link_to 'Fork Preset', presets_path(@preset, preset: { name: @preset.name, user_id: @current_user.id, :seeds=>@preset.seeds, :angle=>@preset.angle, :zoom=>@preset.zoom, :opacity=>@preset.opacity, :color_1=>@preset.color_1, :color_2=>@preset.color_2, :color_3=>@preset.color_3, :color_4=>@preset.color_4, :bg_color=>@preset.bg_color, :x=>@preset.x, :y=>@preset.y, :b1=>@preset.b1, :b2=>@preset.b2, :b3=>@preset.b3, :b4=>@preset.b5, :b5=>@preset.b5 }, format: :html), method: 'post', class: 'button is-success' %>
+
 <% else %>
 
     <%= link_to 'Create account to fork settings!', new_user_path %>
@@ -52,12 +107,11 @@
 <% if @preset.ratings.present? %>
     <p>Avg Rating: <%= render 'stars', preset: @preset %></p>
 <% end %>
-<h3>Comments: [<%= @preset.comments.size %>]</h3>
 <% if @current_user.present? %>
     <%= form_with(model: new_comment, local: true) do |form| %>
         <div class="field">
-            <%= form.label :comment %>
-            <%= form.text_area :comment %>
+            <%= form.label :comment, class: 'label' %>
+            <%= form.text_area :comment, class: 'textarea' %>
         </div>
         <div class="field">
             <%= form.hidden_field :user_id, id: @current_user.id, value: @current_user.id %>
@@ -66,17 +120,18 @@
             <%= form.hidden_field :preset_id, id: @preset.id, value: @preset.id %>
         </div>
         <div class="actions">
-            <%= form.submit 'Add Comment', class: 'btn' %>
+            <%= form.submit 'Add Comment', class: 'button is-outlined is-link' %>
         </div>
     <% end %>
 <% end %>
+<h3>Comments: [<%= @preset.comments.size %>]</h3>
+
 <hr>
 <% @preset.comments.each do |comment| %>
-    <div class="comment">
-        <h4>By: <%= comment.user.email %></h4>
-        <p><%= comment.comment %></p>
+    <div class="message">
+        <div class="message-header">By: <%= comment.user.email %></div>
+        <div class="message-body"><%= comment.comment %></div>
     </div>
-    <hr>
 <% end %>
 
 

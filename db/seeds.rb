@@ -15,14 +15,15 @@ u2 = User.create email: 'test2@test.com', password: 'test'
 u3 = User.create email: 'test3@test.com', password: 'test'
 u4 = User.create email: 'test4@test.com', password: 'test'
 
-p1 = Preset.create name: 'test1'
-p2 = Preset.create name: 'test2'
-p3 = Preset.create name: 'test3'
-p4 = Preset.create name: 'test4'
-p5 = Preset.create name: 'test5'
-p6 = Preset.create name: 'test6'
-p7 = Preset.create name: 'test7'
-p8 = Preset.create name: 'test8'
+p1 = Preset.create name: 'test1', color_1: '#23ff98', color_2: '#c610ff', color_3: '#ff10a2', color_4: '#fe10a2',bg_color:"#111111", seeds: 250, angle:90, opacity: 100, zoom:15, b1:100, b2:10, b3:10, b4:100, b5:50,x:2,y:2
+
+p2 = Preset.create name: 'test2', color_1: '#23ff98', color_2: '#c610ff', color_3: '#ff10a2', color_4: '#fe10a2',bg_color:"#111111", seeds: 250, angle:90, opacity: 100, zoom:15, b1:100, b2:10, b3:10, b4:100, b5:50,x:2,y:2
+p3 = Preset.create name: 'test3', color_1: '#23ff98', color_2: '#c610ff', color_3: '#ff10a2', color_4: '#fe10a2',bg_color:"#111111", seeds: 250, angle:90, opacity: 100, zoom:15, b1:100, b2:10, b3:10, b4:100, b5:50,x:2,y:2
+p4 = Preset.create name: 'test4', color_1: '#23ff98', color_2: '#c610ff', color_3: '#ff10a2', color_4: '#fe10a2',bg_color:"#111111", seeds: 250, angle:90, opacity: 100, zoom:15, b1:100, b2:10, b3:10, b4:100, b5:50,x:2,y:2
+p5 = Preset.create name: 'test5', color_1: '#23ff98', color_2: '#c610ff', color_3: '#ff10a2', color_4: '#fe10a2',bg_color:"#111111", seeds: 250, angle:90, opacity: 100, zoom:15, b1:100, b2:10, b3:10, b4:100, b5:50,x:2,y:2
+p6 = Preset.create name: 'test6', color_1: '#23ff98', color_2: '#c610ff', color_3: '#ff10a2', color_4: '#fe10a2',bg_color:"#111111", seeds: 250, angle:90, opacity: 100, zoom:15, b1:100, b2:10, b3:10, b4:100, b5:50,x:2,y:2
+p7 = Preset.create name: 'test7', color_1: '#23ff98', color_2: '#c610ff', color_3: '#ff10a2', color_4: '#fe10a2',bg_color:"#111111", seeds: 250, angle:90, opacity: 100, zoom:15, b1:100, b2:10, b3:10, b4:100, b5:50,x:2,y:2
+p8 = Preset.create name: 'test8', color_1: '#23ff98', color_2: '#c610ff', color_3: '#ff10a2', color_4: '#fe10a2',bg_color:"#111111", seeds: 250, angle:90, opacity: 100, zoom:15, b1:100, b2:10, b3:10, b4:100, b5:50,x:2,y:2
 
 c1 = Comment.create comment: 'this is a comment, c1 this is a comment, this is a comment, '
 c2 = Comment.create comment: 'this is a comment, c2 this is a comment, this is a comment,'

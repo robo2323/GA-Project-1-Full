@@ -1,88 +1,266 @@
-const main = () => {
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    const canvas = document.getElementById('myCanvas');
-    canvas.width = windowWidth / 2;
-    canvas.height = windowHeight / 2;
-    const context = canvas.getContext('2d');
+// seed color and alpha
 
-    const tileSizeEl = document.querySelector('#square-size');
-    const lineWidthEl = document.querySelector('#line-width');
-    const tileSize = +tileSizeEl.value;
-    const lineWidth = +lineWidthEl.value;
+var seedColor = '#111111';
+var seedColorTwo = '#111111';
+var seedColorThree = '#111111';
+var seedColorFour = '#111111';
+var bgColor = ['#111111'];
 
-    function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+// inital number of seeds
+var seeds = 300;
 
+// angle (phi)
+var angle = 90
 
-    function generateLines(ctx, tileSize, lineWidth, width, height) {
-        ctx.clearRect(0, 0, width, height);
+// radius of the seed
+var b1 = 100;
+var b2 = 10;
+var b3 = 10;
+var b4 = 100;
+var b5 = 50;
 
-        for (let y = 0; y <= (height / tileSize); y++) {
-            for (let x = 0; x <= (width / tileSize); x++) {
-                const leftToRight = Math.random() >= .5;
-                const xOffset = x * tileSize;
-                const yOffset = y * tileSize;
+// scale
+var zoom = 15;
 
-                ctx.beginPath();
-                ctx.lineWidth = lineWidth;
-                ctx.strokeStyle = `rgb(${getRandomInt(0, 255) + x},
-                    ${getRandomInt(0, 255) - y},
-                    ${getRandomInt(0, 255) - x}`;
-                if (leftToRight) {
-                    // draw  right to left line = \
-                    ctx.moveTo(xOffset, yOffset);
-                    ctx.lineTo(xOffset + tileSize, yOffset + tileSize);
-                    ctx.rotate(getRandomInt(0,5) * Math.PI / 180);
+// seed opacity
+var opacity = 80;
 
-                } else {
-                    // draw  left to right line = /
-                    ctx.moveTo(xOffset + tileSize, yOffset);
-                    ctx.lineTo(xOffset, yOffset + tileSize);
-                    ctx.rotate(getRandomInt(0,5) * Math.PI / 180);
+/////////////////
+var x = 2;
+var y = 2;
+var clicked = false;
+var ang = 0.0;
+var inc;
+
+///////////////////////////
+
+function setup() {
+    const d = document;
 
 
-                }
+    // all angles in degrees (0 .. 360)
+    angleMode(DEGREES);
 
 
-                ctx.stroke();
-            }
+    // create a canvas that fills the window
+    var cnv = createCanvas(windowWidth / 1.5, windowHeight / 1.5);
+    cnv.parent('myCanvas');
+
+
+    // only call draw when then gui is changed
+    noLoop();
+
+}
+
+const getRandInt = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+function draw() {
+
+    background(bgColor);
+
+    var c = color(seedColor);
+    fill(red(c), green(c), blue(c), opacity);
+
+    var r = b5 * zoom;
+
+    push();
+
+    translate(width / x, height / y);
+
+    // rotate around the center while going outwards
+    for (var i = 0; i < seeds; i++) {
+        const num = Math.floor(Math.random() * 4);
+        if (num === 0) {
+            c = color(seedColor)
         }
+        if (num === 1) {
+            c = color(seedColorTwo)
+        }
+        if (num === 2) {
+            c = color(seedColorThree)
+        }
+        if (num === 3) {
+            c = color(seedColorFour)
+        }
+
+        if (clicked) {
+            inc = TWO_PI / 100.0;
+            b4 += sin(ang);
+            b2 -= sin(ang);
+            Math.random() <= 0.5 ? x += sin(ang) * 0.005 : x -= cos(ang) * 0.005;
+            Math.random() <= 0.5 ? y += sin(ang) * 0.005 : y -= cos(ang) * 0.005;
+
+            angle += tan(ang);
+            zoom += sin(ang) * .05;
+            ang += inc;
+        }
+        stroke(0, opacity * Math.random());
+
+        fill(red(c), green(c), blue(c), opacity * Math.random());
+
+        push();
+        rotate(i * angle);
+        var d = sqrt(i + 0.5) * zoom;
+        bezier(d, b4, b5, b1, b2, b3, r, d);
+        pop();
     }
 
-    generateLines(context, tileSize, lineWidth, windowWidth, windowWidth);
+    pop();
 
-    canvas.addEventListener("click", function () {
-        generateLines(context, tileSize, lineWidth, canvas.width, canvas.height);
+}
+
+// dynamically adjust the canvas to the window
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
+
+const main = () => {
+    const d = document;
+    const xEl = d.querySelector('#x')
+    const yEl = d.querySelector('#y')
+    const seedsRange = d.querySelector('#seeds');
+    const angleRange = d.querySelector('#angle');
+    const zoomRange = d.querySelector('#zoom');
+    const opacityRange = d.querySelector('#opacity');
+    const color1Picker = d.querySelector('#color-1');
+    const color2Picker = d.querySelector('#color-2');
+    const color3Picker = d.querySelector('#color-3');
+    const color4Picker = d.querySelector('#color-4');
+    const bgPicker = d.querySelector('#bgColor');
+    const b1El = d.querySelector('#b1');
+    const b2El = d.querySelector('#b2');
+    const b3El = d.querySelector('#b3');
+    const b4El = d.querySelector('#b4');
+    const b5El = d.querySelector('#b5');
+    b1 = +b1El.value;
+    b2 = +b2El.value;
+    b3 = +b3El.value;
+    b4 = +b4El.value;
+    b5 = +b5El.value;
+    seeds = +seedsRange.value;
+    zoom = +zoomRange.value;
+    angle = +angleRange.value
+    opacity = +opacityRange.value;
+    seedColor = color1Picker.value;
+    seedColorTwo = color2Picker.value;
+    seedColorThree = color3Picker.value;
+    seedColorFour = color4Picker.value;
+    x = +xEl.value;
+    y = +yEl.value;
+
+
+    if (document.querySelector('#stars-container') !== null) {
+        const drawStars = function (e) {
+            const star = e.target.children[0];
+            star.style.color = 'gold';
+        };
+
+        const stars = document.querySelectorAll('.star');
+
+        for (let i = 0; i < stars.length; i++) {
+            stars[i].addEventListener('mouseenter', drawStars)
+        }
+
+        document.querySelector('#stars-container').addEventListener('mouseleave', function () {
+            for (let i = 0; i < stars.length; i++) {
+                stars[i].children[0].style.color = 'black'
+            }
+        })
+    }
+
+    document.querySelector('#myCanvas').addEventListener('click', function () {
+        clicked = !clicked;
+
+        clicked ? loop() : noLoop()
+        xEl.value = x;
+        yEl.value = y;
+        angleRange.value = angle;
+        zoomRange.value = zoom;
+        b2El.value = b2;
+        b4El.value = b4;
+    });
+
+    seedsRange.addEventListener('input', function (e) {
+        seeds = +e.target.value;
+        draw();
+    });
+
+    angleRange.addEventListener('input', function (e) {
+        angle = +e.target.value;
+        draw();
+    });
+
+    zoomRange.addEventListener('input', function (e) {
+        zoom = +e.target.value;
+        draw();
+    });
+
+    opacityRange.addEventListener('input', function (e) {
+        opacity = +e.target.value;
+        draw();
+    });
+
+    color1Picker.addEventListener('input', function (e) {
+        seedColor = e.target.value;
+        draw();
+    });
+
+    color2Picker.addEventListener('input', function (e) {
+        seedColorTwo = e.target.value;
+        draw();
+    });
+
+    color3Picker.addEventListener('input', function (e) {
+        seedColorThree = e.target.value;
+        draw();
+    });
+
+    color4Picker.addEventListener('input', function (e) {
+        seedColorFour = e.target.value;
+        draw();
+    });
+
+    bgPicker.addEventListener('input', function (e) {
+        bgColor = e.target.value;
+        draw();
+    });
+
+    zoomRange.addEventListener('input', function (e) {
+        zoom = +e.target.value;
+        draw();
+    });
+
+    b1El.addEventListener('input', function (e) {
+        b1 = +e.target.value;
+        draw();
+    });
+
+    b2El.addEventListener('input', function (e) {
+        b2 = +e.target.value;
+        draw();
+    });
+
+    b3El.addEventListener('input', function (e) {
+        b3 = +e.target.value;
+        draw();
+    });
+
+    b4El.addEventListener('input', function (e) {
+        b4 = +e.target.value;
+        draw();
+    });
+
+    b5El.addEventListener('input', function (e) {
+        b5 = +e.target.value;
+        draw();
     });
 
 
-    tileSizeEl.addEventListener('input', function (e) {
-        generateLines(context, +e.target.value, +lineWidthEl.value, canvas.width, canvas.height)
-    })
+    draw();
 
-    lineWidthEl.addEventListener('input', function (e) {
-        generateLines(context, +tileSizeEl.value, +e.target.value, canvas.width, canvas.height)
-    })
-
-    const drawStars = function (e) {
-        const star = e.target.children[0]
-        star.style.color = 'gold';
-    }
-
-    const stars = document.querySelectorAll('.star')
-
-    for (let i = 0; i < stars.length; i++) {
-        stars[i].addEventListener('mouseenter', drawStars)
-    }
-
-    document.querySelector('#stars-container').addEventListener('mouseleave', function () {
-        for (let i = 0; i < stars.length; i++) {
-            stars[i].children[0].style.color = 'black'
-        }
-    })
-}
+};
 
 
 document.addEventListener('DOMContentLoaded', main);

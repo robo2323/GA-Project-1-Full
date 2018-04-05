@@ -1,49 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html class="has-navbar-fixed-top">
 <head>
     <title>Project1</title>
     <%= csrf_meta_tags %>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/p5.js"></script>
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body>
+<body class="has-navbar-fixed-top">
 
-
-<nav class="green">
-    <div class="nav-wrapper">
-        <ul>
+<div class="container">
+    <nav class="navbar is-dark is-fixed-top">
+        <div class="navbar-start">
 
             <% if @current_user.present? %>
-                <li><%= link_to 'Your Presets', presets_path %></li>
+                <%= link_to 'Your Presets', presets_path, class: "navbar-item" %>
 
-                <li><%= link_to 'Browse All Presets', presets_all_path %></li>
-                <li class="right">
-                    <div class="dropdown-nav">
-                        <a><%= @current_user.email %></a>
-                        <div class="dropdown-nav-content green">
-                            <%= link_to "Edit Account", edit_user_path(@current_user.id) %>
-                            <%= link_to "Sign Out", login_path, method: 'delete' %>
+                <%= link_to 'Browse All Presets', presets_all_path, class: "navbar-item" %>
+
+                </div>
+
+                <div class="navbar-end">
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link"><%= @current_user.email %></a>
+                        <div class="navbar-dropdown">
+                            <%= link_to "Edit Account", edit_user_path(@current_user.id), class: "navbar-item" %>
+                            <%= link_to "Sign Out", login_path, method: 'delete', class: "navbar-item" %>
                         </div>
                     </div>
-                </li>
+                </div>
 
 
             <% else %>
-                <li><%= link_to 'Home', presets_path %></li>
+                <%= link_to 'Home', presets_path, class: "navbar-item" %>
 
-                <li><%= link_to 'New User', new_user_path %></li>
-                <li class="right"><%= link_to 'Sign In', login_path %></li>
+                <%= link_to 'New User', new_user_path, class: "navbar-item" %>
+                <%= link_to 'Sign In', login_path, class: "navbar-item" %>
 
             <% end %>
-        </ul>
-    </div>
-</nav>
-<div class="container">
+
+            </nav>
+</div>
+<div class="container content">
 
     <%= yield %>
 </div>
+
+<footer>
+    <p>By Rob Harkness, 2018</p>
+</footer>
 </body>
 </html>

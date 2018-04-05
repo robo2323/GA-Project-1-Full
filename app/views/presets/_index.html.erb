@@ -27,12 +27,12 @@
 
             <% if preset_is_users?(preset) %>
                 <td><%= preset.comments.size %></td>
-                <td><%= link_to 'Delete', preset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= link_to 'Delete', preset, method: :delete, data: { confirm: 'Are you sure?' },class:'button is-danger' %></td>
             <% else %>
                 <td><%= preset.user.email %></td>
 
             <% end %>
-            <td><%= link_to 'Show', preset_path(preset) %></td>
+            <td><%= link_to 'Show', preset_path(preset), class: 'button is-success is-outlined' %></td>
 
         </tr>
     <% end %>

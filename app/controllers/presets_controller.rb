@@ -55,15 +55,20 @@ class PresetsController < ApplicationController
   # PATCH/PUT /presets/1
   # PATCH/PUT /presets/1.json
   def update
-    respond_to do |format|
-      if @preset.update(preset_params)
-        format.html { redirect_to @preset, notice: 'Preset was successfully updated.' }
-        format.json { render :show, status: :ok, location: @preset }
-      else
-        format.html { render :edit }
-        format.json { render json: @preset.errors, status: :unprocessable_entity }
-      end
-    end
+    # raise :hell
+    # respond_to do |format|
+    #   if @preset.update(preset_params)
+    #     format.html { redirect_to @preset, notice: 'Preset was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @preset }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @preset.errors, status: :unprocessable_entity }
+    #   end
+    # raise :hell
+    @preset.update(preset_params)
+    flash[:notice] = 'Preset was successfully updated.'
+    redirect_to @preset
+
   end
 
   # DELETE /presets/1
@@ -130,7 +135,7 @@ class PresetsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def preset_params
-    params.require(:preset).permit(:name, :user_id)
+    params.require(:preset).permit(:name, :user_id, :seeds, :angle, :zoom, :opacity, :color_1, :color_2, :color_3, :color_4, :bg_color, :x, :y, :b1, :b2, :b3, :b4, :b5)
   end
 
   def comment_params

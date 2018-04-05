@@ -1,15 +1,16 @@
 <h1>Sign In</h1>
 <% if flash[:error].present? %>
-<p id="error_explanation"><%= flash[:error]  %></p>
-    <% end %>
-<p id="notice"><%= notice %></p>
-
-<%= form_tag login_path do %>
-    <%= label_tag :email %>
-    <%= email_field_tag :email %>
-
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-
-    <%= submit_tag 'Sign In' %>
+    <p id="error_explanation"><%= flash[:error] %></p>
 <% end %>
+<p id="notice"><%= notice %></p>
+<div class="form">
+    <%= form_tag login_path do %>
+        <%= label_tag :email, :email, class: 'label' %>
+        <%= email_field_tag :email, '', class: 'input' %>
+
+        <%= label_tag :password, :password, class: 'label' %>
+        <%= password_field_tag :password, '', class: 'input' %>
+
+        <%= submit_tag 'Sign In', class: 'button is-outlined is-link' %>
+    <% end %>
+</div>

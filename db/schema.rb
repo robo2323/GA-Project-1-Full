@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180403014553) do
+ActiveRecord::Schema.define(version: 20180405042207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,22 @@ ActiveRecord::Schema.define(version: 20180403014553) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "color_1"
+    t.string "color_2"
+    t.string "color_3"
+    t.string "color_4"
+    t.string "bg_color"
+    t.integer "seeds"
+    t.float "angle"
+    t.float "zoom"
+    t.integer "opacity"
+    t.integer "b1"
+    t.integer "b2"
+    t.integer "b3"
+    t.integer "b4"
+    t.integer "b5"
+    t.float "x"
+    t.float "y"
   end
 
   create_table "ratings", force: :cascade do |t|
