@@ -53,16 +53,7 @@ class PresetsController < ApplicationController
   # PATCH/PUT /presets/1
   # PATCH/PUT /presets/1.json
   def update
-    # raise :hell
-    # respond_to do |format|
-    #   if @preset.update(preset_params)
-    #     format.html { redirect_to @preset, notice: 'Preset was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @preset }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @preset.errors, status: :unprocessable_entity }
-    #   end
-    # raise :hell
+
     @preset.update(preset_params)
     flash[:notice] = 'Preset was successfully updated.'
     redirect_to @preset
@@ -98,7 +89,7 @@ class PresetsController < ApplicationController
     if preset.ratings.present?
       arr = preset.ratings.pluck(:rating)
       arr.compact!
-      @rating = (arr.sum.to_f / arr.size).round #(arr.inject { |sum, el| sum + el }.to_f / arr.size).round
+      @rating = (arr.sum.to_f / arr.size).round
     end
 
   end
