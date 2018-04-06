@@ -44,10 +44,8 @@ class PresetsController < ApplicationController
     respond_to do |format|
       if @preset.save
         format.html { redirect_to @preset, notice: 'Preset was successfully created.' }
-        format.json { render :show, status: :created, location: @preset }
       else
         format.html { render :new }
-        format.json { render json: @preset.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -79,7 +77,6 @@ class PresetsController < ApplicationController
       @preset.destroy
       respond_to do |format|
         format.html { redirect_to presets_url, notice: 'Preset was successfully deleted.' }
-        format.json { head :no_content }
       end
     else
       redirect_to presets_path
