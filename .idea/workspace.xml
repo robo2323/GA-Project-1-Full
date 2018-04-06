@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56af8115-a174-4106-aa30-51577c7299bd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/bulma/bulma.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bulma/bulma.css" />
+      <change beforePath="$PROJECT_DIR$/app/views/presets/show.html.erb" afterPath="$PROJECT_DIR$/app/views/presets/show.html.erb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -29,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/presets/edit.html.erb">
+      <file leaf-file-name="_index.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/presets/_index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+            <state relative-caret-position="598">
+              <caret line="34" column="82" lean-forward="false" selection-start-line="34" selection-start-column="82" selection-end-line="34" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -69,11 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.erb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="show.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/presets/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state relative-caret-position="275">
+              <caret line="114" column="13" lean-forward="false" selection-start-line="114" selection-start-column="13" selection-end-line="114" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -99,11 +99,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bulma.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bulma.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/bulma/bulma.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="2549" column="19" lean-forward="false" selection-start-line="2549" selection-start-column="19" selection-end-line="2549" selection-end-column="19" />
+            <state relative-caret-position="802">
+              <caret line="2581" column="24" lean-forward="true" selection-start-line="2581" selection-start-column="24" selection-end-line="2581" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -205,8 +205,8 @@
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/presets/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/presets/all.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/presets/show.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/bulma/bulma.css" />
+        <option value="$PROJECT_DIR$/app/views/presets/show.html.erb" />
       </list>
     </option>
   </component>
@@ -506,12 +506,12 @@
       <option name="presentableId" value="Default" />
       <updated>1522586262885</updated>
       <workItem from="1522586265522" duration="9284000" />
-      <workItem from="1522640150210" duration="110730000" />
+      <workItem from="1522640150210" duration="111041000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120014000" />
+    <option name="totallyTimeSpent" value="120325000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1049" extended-state="6" />
@@ -750,14 +750,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/presets/_index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="34" column="82" lean-forward="false" selection-start-line="34" selection-start-column="82" selection-end-line="34" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
@@ -934,6 +926,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/bulma/bulma.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="802">
+          <caret line="2581" column="24" lean-forward="true" selection-start-line="2581" selection-start-column="24" selection-end-line="2581" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/presets/_index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="34" column="82" lean-forward="false" selection-start-line="34" selection-start-column="82" selection-end-line="34" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/presets/all.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -944,16 +952,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/presets/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/bulma/bulma.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="2549" column="19" lean-forward="false" selection-start-line="2549" selection-start-column="19" selection-end-line="2549" selection-end-column="19" />
+        <state relative-caret-position="275">
+          <caret line="114" column="13" lean-forward="false" selection-start-line="114" selection-start-column="13" selection-end-line="114" selection-end-column="13" />
           <folding />
         </state>
       </provider>
