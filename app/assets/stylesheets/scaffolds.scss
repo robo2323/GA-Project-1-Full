@@ -73,11 +73,16 @@ div {
 
 footer{
   text-align: right;
-  margin: 20px;
+  margin: 20px 0 0 0;
   padding: 20px;
   background: #363636;
   color: #EFEFEF;
-  margin: 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+
 }
 td svg{
   color: gold;
