@@ -1,8 +1,11 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<h1>Your Presets</h1>
+    <p id="notice"><%= notice %></p>
 
-<%= render 'index', presets: @presets %>
+    <h1>Your Presets</h1>
 
-<%= link_to 'New Preset', new_preset_path %>
+    <%= render 'index', presets: @presets %>
 
+    <%= link_to 'New Preset', new_preset_path %>
+
+</div>

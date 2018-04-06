@@ -1,4 +1,4 @@
-// seed color and alpha
+// color and alpha
 
 var seedColor = '#111111';
 var seedColorTwo = '#111111';
@@ -43,7 +43,7 @@ function setup() {
 
 
     // create a canvas that fills the window
-    var cnv = createCanvas(windowWidth / 1.5, windowHeight / 1.5);
+    var cnv = createCanvas(windowWidth / 1.43, windowHeight / 1.43);
     cnv.parent('myCanvas');
 
 
@@ -113,7 +113,7 @@ function draw() {
 
 // dynamically adjust the canvas to the window
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
+    resizeCanvas(windowWidth/1.43, windowHeight/1.43);
 }
 
 const main = () => {
@@ -150,25 +150,6 @@ const main = () => {
     x = +xEl.value;
     y = +yEl.value;
 
-
-    if (document.querySelector('#stars-container') !== null) {
-        const drawStars = function (e) {
-            const star = e.target.children[0];
-            star.style.color = 'gold';
-        };
-
-        const stars = document.querySelectorAll('.star');
-
-        for (let i = 0; i < stars.length; i++) {
-            stars[i].addEventListener('mouseenter', drawStars)
-        }
-
-        document.querySelector('#stars-container').addEventListener('mouseleave', function () {
-            for (let i = 0; i < stars.length; i++) {
-                stars[i].children[0].style.color = 'black'
-            }
-        })
-    }
 
     document.querySelector('#myCanvas').addEventListener('click', function () {
         clicked = !clicked;
@@ -259,6 +240,7 @@ const main = () => {
 
 
     draw();
+
 
 };
 

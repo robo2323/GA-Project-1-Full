@@ -1,6 +1,7 @@
 <% (1..avg_rating(preset).to_i).each do |i| %>
-    <span><i class="fas fa-star"></i></span>
+    <span class="preset-stars"><i class="fas fa-star"></i></span>
 <% end %>
+
 <% (avg_rating(preset).to_i..4).each do |i| %>
-    <span><i class="far fa-star"></i></span>
+    <span class="preset-stars"><i class="far fa-star"></i></span>
 <% end %>
