@@ -1,6 +1,6 @@
 # GA Project 1: Rails - Generative Art CRUD system
 ## Generative Art with javascript and p5.js
-### See the [live version](https://thawing-springs-49331.herokuapp.com/)
+### See the [live version](https://gen-art.herokuapp.com/)
 ## Requirements
 ruby, rails and postgresql (you will need your own postgresql server running)
 ## Installation
